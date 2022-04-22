@@ -39,14 +39,13 @@ http://< Public-IP-Address >:80
 </VirtualHost>`
 - To save and close the file, (1) Hit the esc button on the keyboard (2) Type : (3) Type wq. w for write and q for quit (4) Hit ENTER to save the file
 - Use the ls command to show the new file in the sites-available directory via `sudo ls /etc/apache2/sites-available`
-- Use a2ensite command to enable the new virtual host via `sudo a2ensite projectlamp'
+- Use a2ensite command to enable the new virtual host via `sudo a2ensite projectlamp`
 -To disable Apache’s default website use a2dissite command , type `sudo a2dissite 000-default`
 - To make sure your configuration file doesn’t contain syntax errors, run `sudo apache2ctl configtest`
 - Reload Apache so these changes take effect via `sudo systemctl reload apache2`
 - New website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that location so that we can test that the virtual host works as expected, using `sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html`
 - Go to your browser and try to open your website URL using IP address (http://< Public-IP-Address >:80) or public DNS name (http://< Public-DNS-Name >:80). The result is the same.
-![apache-website-default-page](./images/apache-website-default-page.PNG)
-
+![hello-lamp](./images/hello-lamp.PNG)
 ## Step 5: Enable PHP on the Website
 - To change the default DirectoryIndex settings on Apache, a file named index.html from taking precedence over an index.php file, edit the /etc/apache2/mods-enabled/dir.conf file and change the order in which the index.php file is listed within the DirectoryIndex directive via `sudo vim /etc/apache2/mods-enabled/dir.conf` then
 `<IfModule mod_dir.c>
