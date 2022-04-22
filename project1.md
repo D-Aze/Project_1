@@ -59,5 +59,4 @@ http://< Public-IP-Address >:80
 Add the following text, which is valid PHP code, inside the file:
 `<?php
 phpinfo();`
-
-
+- Save and close the file, refresh the page.
