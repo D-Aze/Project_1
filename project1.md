@@ -40,6 +40,7 @@ http://< Public-IP-Address >:80
 - To save and close the file, (1) Hit the esc button on the keyboard (2) Type : (3) Type wq. w for write and q for quit (4) Hit ENTER to save the file
 - Use the ls command to show the new file in the sites-available directory via `sudo ls /etc/apache2/sites-available`
 - Use a2ensite command to enable the new virtual host via `sudo a2ensite projectlamp'
+-To disable Apache’s default website use a2dissite command , type `sudo a2dissite 000-default`
 - To make sure your configuration file doesn’t contain syntax errors, run `sudo apache2ctl configtest`
 - Reload Apache so these changes take effect via `sudo systemctl reload apache2`
 - New website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that location so that we can test that the virtual host works as expected, using `sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html`
@@ -59,4 +60,8 @@ http://< Public-IP-Address >:80
 Add the following text, which is valid PHP code, inside the file:
 `<?php
 phpinfo();`
-- Save and close the file, refresh the page.
+- Save and close the file, refresh the web page.
+![php-enabled](./images/php-enabled.PNG)
+- After checking the relevant information about your PHP server through that page, remove the file created as it contains sensitive information about PHP environment and Ubuntu server: `sudo rm /var/www/projectlamp/index.php`
+
+First real life project (deploying a LAMP stack website in AWS Cloud) complete!
